@@ -1,0 +1,45 @@
+<div class="text-center">Order List</div>
+<form action="" [formGroup]="orderForm">
+  <div>
+    <label for="customerName">Customer Name</label
+    ><input type="text" formControlName="customerName" />
+  </div>
+
+  <div>
+    <label for="email">Email</label
+    ><input type="text" formControlName="email" />
+  </div>
+
+  <div>
+    <label for="mobile">Mobile number</label
+    ><input type="text" formControlName="mobile" />
+  </div>
+
+  <label for="items">Items</label>
+  <div
+    *ngFor="let control of items.controls; let i = index"
+    formArrayName="items"
+  >
+    <div [formGroupName]="i">
+      <div>
+        <input type="text" formControlName="name" placeholder="Item name" />
+        <input type="text" formControlName="desc" placeholder="Description" />
+        <input type="text" formControlName="price" placeholder="Price" />
+        <input type="text" formControlName="email" placeholder="Email" />
+        <button type="button" (click)="onAdd()">Add</button>
+        <button
+          type="button"
+          (click)="onRemove(i)"
+          [hidden]="items.length <= 1"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button type="button" (click)="onSubmit()">Submit</button>
+    <button type="button" (click)="onReset()">Reset</button>
+    <button type="button" (click)="onPatch()">Patch</button>
+  </div>
+</form>
